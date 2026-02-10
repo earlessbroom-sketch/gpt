@@ -2,3 +2,6 @@ fastapi
 uvicorn[standard]
 pydantic
 PyMuPDF
+ebooklib
+beautifulsoup4
+lxml
