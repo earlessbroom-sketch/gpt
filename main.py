@@ -2,7 +2,7 @@ import os
 import re
 import uuid
 from typing import List, Dict, Any, Optional, Tuple
-
+from ebooklib import epub, ITEM_DOCUMENT
 from fastapi import FastAPI, HTTPException, Query
 from pydantic import BaseModel
 
@@ -63,7 +63,7 @@ def extract_epub_sections(path: str) -> List[Tuple[str, str]]:
     out: List[Tuple[str, str]] = []
     idx = 0
     for item in book.get_items():
-        if item.get_type() == 9:  # ebooklib.ITEM_DOCUMENT == 9
+        if item.get_type() == ITEM_DOCUMENT:
             idx += 1
             soup = BeautifulSoup(item.get_content(), "lxml")
             text = soup.get_text("\n")
